@@ -1,6 +1,7 @@
 'use strict'
 
 var fs = require('fs');
+var path = require('path');
 var Velocityjs = require('velocityjs');
 
 function Velocity(tplPath, context) {
@@ -25,6 +26,9 @@ Velocity.prototype = {
             },
             parse: function(path) {
                 return self._parse(path)
+            },
+            sourceVersion: function(path) {
+                return path
             }
         })
     },
@@ -34,6 +38,7 @@ Velocity.prototype = {
         }).toString()
     },
     _include: function(path) {
+        /*
         var _path = path.split('../')
         var _tplPath = this.tplPath
         var _n = _path.length
@@ -42,6 +47,8 @@ Velocity.prototype = {
             _n--
         }
         return this._getTplContent(_tplPath + '/' + _path[_path.length - 1])
+        */
+        return this._getTplContent(path.resolve(this.tplPath, path))
     },
     _parse: function(path) {
         return this.render(this._include(path), this.context)

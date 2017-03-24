@@ -26,7 +26,7 @@ function handle(target, key, { value: _fn, configurable, enumerable }, _args) {
         get() {
             let fn = function(){
                 console.log(_args)
-                _fn.bind(this)();
+                _fn.bind(this)(...arguments);
             }
 
             const boundFn = bind(fn, this);

@@ -1,9 +1,20 @@
-export default function (...args) {
+let _args;
+
+export default function (args) {
+    if(args.before && args.after){
+        _args = args;
+        return AutobindProperty;
+    }else{
+        AutobindProperty(args);
+    }
+}
+
+function AutobindProperty(args){
     if (args.length === 3 && typeof args[2].value === 'function') {
         return handle(...args);
     } else {
         return function () {
-            return handle(...arguments, args);
+            return handle(...arguments, _args);
         };
     }
 }
@@ -18,15 +29,16 @@ function bind(fn, context) {
     }
 }
 
-function handle(target, key, { value: _fn, configurable, enumerable }, _args) {
+function handle(target, key, { value: _fn, configurable, enumerable }, { before, after } = { before, after }) {
     return {
         configurable,
         enumerable,
 
         get() {
-            let fn = function(){
-                console.log(_args)
+            let fn = function () {
+                before && before();
                 _fn.bind(this)(...arguments);
+                after && after();
             }
 
             const boundFn = bind(fn, this);
@@ -34,7 +46,6 @@ function handle(target, key, { value: _fn, configurable, enumerable }, _args) {
             Object.defineProperty(this, key, {
                 configurable: true,
                 writable: true,
-                // NOT enumerable when it's a bound method
                 enumerable: false,
                 value: boundFn
             });

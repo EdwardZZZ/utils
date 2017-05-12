@@ -6,10 +6,11 @@
                     _parentMenuList.push({id, name: prefix + name});
 
                     if(id == self.menu.parent_id){
-                        self.parentMenuName = name;
+                        self.parentMenu = { id, name: prefix + name }
                     }
 
                     if(menu.children && menu.children.length > 0){
-                        menu.children.forEach(foreach.bind(this, prefix + '----'));
+                        // menu.children.forEach(foreach.bind(this, prefix + '|----'));
+                        menu.children.forEach(foreach.bind(this, prefix + name + '--'));
                     }
                 });

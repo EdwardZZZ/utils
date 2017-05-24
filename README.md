@@ -1,5 +1,13 @@
 # Demo
 
+### react-pagination
+react简单分页组件
+<https://github.com/EdwardZZZ/utils/blob/master/react-pagination.js>
+
+### fetch-utils
+fetch简单封装
+<https://github.com/EdwardZZZ/utils/blob/master/fetchUtils.js>
+
 ### console
 手机简单调试工具，页面上直接引用即可，所有的console.log都会可视
 

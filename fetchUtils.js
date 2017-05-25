@@ -14,18 +14,16 @@ function fetchFn(input, init, dataType){
     return new Promise((resolve, reject) => {
         fetch(input, init).then(response => {
             switch(dataType){
-                case 'json':
-                    return response.json();
                 case 'html':
+                case 'text':
                     return response.text();
                 case 'blob':
                     return response.blob();
-                case 'text':
-                    return response.text();
                 case 'arrayBuffer':
                     return response.arrayBuffer();
                 case 'formData':
                     return response.formData();
+                case 'json':
                 default:
                     return response.json();
             }

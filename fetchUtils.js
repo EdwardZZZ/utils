@@ -28,9 +28,9 @@ function fetchFn(input, init, dataType){
                     return response.json();
             }
         }).then(data => {
-            return resolve(data);
+            resolve(data);
         }).catch(e => {
-            return reject(e);
+            reject(e);
         });
     });
 }

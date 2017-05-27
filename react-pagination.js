@@ -22,7 +22,7 @@ export default class Pagination extends Component {
         }
 
         // 全部显示
-        if(pageCount < 8){
+        if(pageCount < 10){
             const _paginate = Array.apply(null, {length: pageCount}).map((_, i) => i+1);
 
             return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 
 export default class Pagination extends Component {
     constructor(props) {
@@ -23,10 +23,7 @@ export default class Pagination extends Component {
 
         // 全部显示
         if(pageCount < 8){
-            let _paginate = []
-            for(let i=0; i<pageCount; i++){
-                _paginate.push(i+1);
-            };
+            const _paginate = Array.apply(null, {length: pageCount}).map((_, i) => i+1);
 
             return (
                 <div>

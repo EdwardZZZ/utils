@@ -1,0 +1,20 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+    "editor.fontSize": 15,
+    "editor.renderWhitespace": "all",
+    "files.associations": {
+        "*.tpl": "html",
+        "*.es":"javascript"
+    },
+    "workbench.colorTheme": "Quiet Light",
+    "sync.gist": "905a843d12b7781e1ecb0d54981ad064",
+    "sync.lastUpload": "2017-05-26T07:48:19.458Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false
+}

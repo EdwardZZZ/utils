@@ -52,7 +52,7 @@ export default class Modal extends React.Component {
 const modal = {
 };
 
-export const open = (title, content) => {
+export const dialog = (title, content) => {
     modal.open(title, content);
 }
 

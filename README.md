@@ -6,7 +6,7 @@ react简单分页组件
 
 ### react-modal
 react modal组件
-<https://github.com/EdwardZZZ/utils/blob/master/react-modal.js>
+<https://github.com/EdwardZZZ/utils/blob/master/react-modal.jsx>
 
 ### fetch-utils
 fetch简单封装

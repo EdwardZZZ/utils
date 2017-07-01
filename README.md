@@ -5,7 +5,7 @@ react简单分页组件
 <https://github.com/EdwardZZZ/utils/blob/master/react-pagination.js>
 
 ### react-modal
-react modal组件
+react modal组件示例
 <https://github.com/EdwardZZZ/utils/blob/master/react-modal.jsx>
 
 ### fetch-utils

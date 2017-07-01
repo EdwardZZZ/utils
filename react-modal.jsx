@@ -8,7 +8,7 @@ export default class Modal extends React.Component {
     }
 
     state = {
-        open: false
+        show: false
     }
 
     componentDidMount(){
@@ -18,7 +18,7 @@ export default class Modal extends React.Component {
             open: {
                 value(title, content){
                     self.setState({
-                        open: true,
+                        show: true,
                         title,
                         content
                     });
@@ -27,7 +27,7 @@ export default class Modal extends React.Component {
             close: {
                 value(){
                     self.setState({
-                        open: false
+                        show: false
                     });
                 }
             }
@@ -35,10 +35,10 @@ export default class Modal extends React.Component {
     }
 
     render() {
-        const {open, title, content} = this.state;
+        const {show, title, content} = this.state;
 
         return (
-            <div className="modal-window" style={{display: this.state.open ? 'block' : 'none'}}>
+            <div className="modal-window" style={{display: show ? 'block' : 'none'}}>
                 <div className="modal-bg" onClick={modal.close}></div>
                 <div className="modal-content">
                     <h1>{title}</h1>
@@ -52,8 +52,12 @@ export default class Modal extends React.Component {
 const modal = {
 };
 
-export const dialog = (title, content) => {
-    modal.open(title, content);
+export const alert = (content) => {
+    modal.open(content);
+}
+
+export const dialog = (title, content, options) => {
+    modal.open(title, content, options);
 }
 
 export const close = () => {

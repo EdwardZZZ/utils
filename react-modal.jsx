@@ -8,7 +8,10 @@ export default class Modal extends React.Component {
     }
 
     state = {
-        show: false
+        show: true,
+        title: null,
+        content: null,
+        options: null
     }
 
     componentDidMount(){
@@ -16,11 +19,12 @@ export default class Modal extends React.Component {
 
         Object.defineProperties(modal, {
             open: {
-                value(title, content){
+                value(title, content, options){
                     self.setState({
                         show: true,
                         title,
-                        content
+                        content,
+                        options
                     });
                 }
             },
@@ -35,29 +39,39 @@ export default class Modal extends React.Component {
     }
 
     render() {
-        const {show, title, content} = this.state;
+        const {show, title, content, options} = this.state;
 
         return (
             <div className="modal-window" style={{display: show ? 'block' : 'none'}}>
-                <div className="modal-bg" onClick={modal.close}></div>
-                <div className="modal-content">
-                    <h1>{title}</h1>
+                <div className="modal-bg" onClick={close}></div>
+                <div className="modal-container">
+                    {title ? <h1>{title}</h1> : null}
                     <div>{content}</div>
+                    {options ? 
+                        <div className="modal-container-btn">
+                            <button onClick={this.confirm}>确定</button>
+                            <button onClick={close}>取消</button>
+                        </div>
+                    : null}
                 </div>
             </div>
         )
     }
+
+    confirm = (e) => {
+        this.state.options && this.state.options.confirm && this.state.options.confirm(e);
+        close();
+    }
 }
 
-const modal = {
-};
+const modal = {};
 
 export const alert = (content) => {
     modal.open(content);
 }
 
 export const dialog = (title, content, options) => {
-    modal.open(title, content, options);
+    modal.open(title, content, options || {});
 }
 
 export const close = () => {

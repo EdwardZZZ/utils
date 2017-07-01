@@ -5,6 +5,12 @@ export default class Pagination extends Component {
     constructor(props) {
         super();
     }
+    
+    static propTypes = {
+        pageNO: PropTypes.number.isRequired,
+        pageSize: PropTypes.number.isRequired,
+        totalCount: PropTypes.number.isRequired,
+    }
 
     componentWillMount(){
         this.initState();
@@ -80,8 +86,3 @@ export default class Pagination extends Component {
     }
 }
 
-Pagination.propTypes = {
-    pageNO: PropTypes.number.isRequired,
-    pageSize: PropTypes.number.isRequired,
-    totalCount: PropTypes.number.isRequired,
-}

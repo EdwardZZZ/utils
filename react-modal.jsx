@@ -50,7 +50,7 @@ export default class Modal extends React.Component {
                     {options ? 
                         <div className="modal-container-btn">
                             <button onClick={this.confirm}>确定</button>
-                            <button onClick={close}>取消</button>
+                            { options.cancelFn ? <button onClick={close}>取消</button> : null }
                         </div>
                     : null}
                 </div>

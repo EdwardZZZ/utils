@@ -59,8 +59,7 @@ export default class Modal extends React.Component {
     }
 
     confirm = (e) => {
-        this.state.options && this.state.options.confirm && this.state.options.confirm(e);
-        close();
+        this.state.options && this.state.options.confirm && this.state.options.confirm(e) !== false && close();
     }
 }
 

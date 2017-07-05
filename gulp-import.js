@@ -24,7 +24,7 @@ module.exports = function (options) {
         }
 
         // 将文件内容转成字符串
-        var content = file.contents.toString().replace(/@import url\("(.+)"\);/g, '@import "$2";')
+        var content = file.contents.toString().replace(/@import url\("(.+)"\);/g, '@import "$1";')
 
         // 然后将处理后的字符串，再转成Buffer形式
         file.contents = new Buffer(content);

@@ -17,7 +17,7 @@ module.exports = function (options) {
             return cb();
         }
 
-        // 插件不支持对 Stream 对直接操作，跑出异常
+        // 插件不支持对 Stream 对直接操作，抛出异常
         if (file.isStream()) {
             this.emit('error', new gulpUtil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
             return cb();

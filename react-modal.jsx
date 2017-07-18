@@ -20,19 +20,12 @@ export default class Modal extends React.Component {
         Object.defineProperties(modal, {
             open: {
                 value(title, content, options){
-                    self.setState({
-                        show: true,
-                        title,
-                        content,
-                        options
-                    });
+                    self.setState({ show: true, title, content, options });
                 }
             },
             close: {
                 value(){
-                    self.setState({
-                        show: false
-                    });
+                    self.setState({ show: false });
                 }
             }
         })

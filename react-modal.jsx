@@ -8,7 +8,7 @@ export default class Modal extends React.Component {
     }
 
     state = {
-        show: true,
+        show: false,
         title: null,
         content: null,
         options: null
@@ -64,7 +64,11 @@ export default class Modal extends React.Component {
     }
 }
 
-const modal = {};
+const modal = {
+    open(){
+        console.error('please import modal at the root node.');
+    }
+};
 
 export const alert = (content) => {
     modal.open(content);

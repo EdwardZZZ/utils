@@ -24,6 +24,7 @@
         },
         type: function(obj){
            return Object.prototype.toString.call(obj).toLowerCase();
+           // slice(8, -1)
         },
         isJSON: function(obj) {
             return typeof(obj) === "object" && Util.type(obj) === "[object object]" && !obj.length;

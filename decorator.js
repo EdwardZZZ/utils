@@ -1,29 +1,31 @@
-export default function(...args) {
-    if (checkMethod(args)) {
-        return handleMethod(args);
-    } else {
-        return function(...args1) {
-            if (checkMethod(args1)) {
-                return handleMethod(args1, args);
-            }
-            if (args1.length === 1) {
-                return function() {
-                    return handleClass(args1[0], args);
-                }
-            }
-            return handleClass(args[0]);
-        };
+export default function({handleMethod, handleClass}){
+    const _checkMethod = (args) => {
+        return args.length === 3 && args[2].value && typeof args[2].value === 'function'
     }
-}
 
-const checkMethod = (args) => {
-    return args.length === 3 && args[2].value && typeof args[2].value === 'function'
-}
+    const _handleMethod = (args, ...params) => {
+        return handleMethod || null;
+    }
 
-function handleMethod(args, params) {
-    console.log('handleMethod', args, params);
-}
+    const _handleClass = (clazz, ...params) => {
+        return handleClass || clazz;
+    }
 
-function handleClass(clazz, params) {
-    console.log('handleClass', clazz, params);
+    return function(...args) {
+        if (_checkMethod(args)) {
+            return _handleMethod(args);
+        } else {
+            return function(...args1) {
+                if (_checkMethod(args1)) {
+                    return _handleMethod(args1, ...args);
+                }
+                if (args1.length === 1) {
+                    return function() {
+                        return _handleClass(args1[0], ...args);
+                    }
+                }
+                return _handleClass(args[0]);
+            };
+        }
+    }
 }

@@ -1,6 +1,6 @@
 export default function({handleMethod, handleClass}){
     const _checkMethod = (args) => {
-        return args.length === 3 && args[2].value && typeof args[2].value === 'function'
+        return args.length === 3 && args[0].constructor && typeof args[1] === 'string' && args[2].value && typeof args[2].value === 'function';
     }
 
     const _handleMethod = (args, ...params) => {

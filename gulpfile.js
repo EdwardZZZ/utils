@@ -9,6 +9,7 @@ var debug = require('gulp-debug')
 var rename = require('gulp-rename')
 var plumber = require('gulp-plumber')
 var base64 = require('gulp-css-base64')
+// gulp-requirejs-optimize
 
 var importWxss = require('./importWxss')
 

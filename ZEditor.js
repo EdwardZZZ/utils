@@ -1,5 +1,9 @@
+;
 (function() {
     var utils = {
+        toArray(obj) {
+            return Array.prototype.slice.call(obj);
+        },
         range() {
             return window.getSelection().getRangeAt(0);
         },
@@ -44,6 +48,11 @@
             },
             parent() {
                 return $($dom.parentNode);
+            },
+            children(selector) {
+                return utils.toArray($dom.childNodes).filter(n => {
+                    return n.matches && n.matches(selector);
+                });
             },
             prepend(html) {
                 if (typeof html === 'string') {
@@ -195,22 +204,27 @@
 
             if (type === 'image') {
                 console.log(p);
-                $(p).after('<p><image src=""/></p>')
+                $(p).after('<p><image src="abc"/></p>')
             }
         }
 
         const pasteText = (txt) => {
             let rangeContainer, rangeStart = 0;
 
-            const txtArr = txt.split(/\n/);
+            const txtArr = txt.split(/\n/).filter(txt => !!txt);
             if (txtArr.length === 0) return;
+            let p = utils.focusDom();
+            if (($(p).children('img')).length > 0) {
+                $(p).after('<p></p>');
+                p = p.nextSibling;
+            }
             const { startOffset, endOffset } = utils.range();
-            const p = utils.focusDom(), pHtml = $(p).html().replace(/&nbsp;/g, ' ');
+            const pHtml = $(p).html().replace(/&nbsp;/g, ' ');
             const newHtml = pHtml.substring(0, startOffset) + txtArr[0] + pHtml.substring(endOffset);
             $(p).html(newHtml.replace(/\s/g, '&nbsp;'));
 
             rangeContainer = p.firstChild;
-            rangeStart = startOffset + txtArr[0].length;
+            rangeStart = Math.min(startOffset + txtArr[0].length, p.firstChild.length);
 
             if (txtArr.length > 1) {
                 const ps = p.nextSibling;
@@ -232,10 +246,19 @@
                 return;
             }
 
-            // e.clipboardData.getData('text/plain')
             for (const item of e.clipboardData.items) {
+
                 if (item.type === "text/plain") {
                     item.getAsString(pasteText);
+                }
+                if (item.type === "text/html") {
+                    item.getAsString((html) => {
+                        const result = html.match(/<p[^\<\>]*?><img\ssrc=\"([^\<\>]*?)\"\s?\/?><\/p>/);
+                        if (result && result.length === 2) {
+                            console.log(result[1]);
+                            // TODO html img 粘贴
+                        }
+                    });
                 }
                 // TODO 图片粘贴待实现
             }

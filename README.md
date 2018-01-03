@@ -1,5 +1,8 @@
 # Demo
 
+### 简易富文本编辑器实现
+<https://github.com/EdwardZZZ/utils/blob/master/ZEditor.js>
+
 ### react-pagination
 react简单分页组件
 <https://github.com/EdwardZZZ/utils/blob/master/react-pagination.js>

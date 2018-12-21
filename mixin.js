@@ -1,5 +1,9 @@
-function isObject(val) {
-    return typeof val === 'function' || (typeof val === 'object' && val !== null && !Array.isArray(val));
+function type(obj) {
+    return Object.prototype.toString.call(obj).slice(8, -1);
+}
+
+function isObject(obj) {
+    return type(obj) === 'Object';
 }
 
 function cloneArray(arr) {
@@ -21,7 +25,7 @@ function mixin(target, ...rest) {
             if (key === '__proto__') continue
             const targetVal = target[key];
             const val = obj[key];
-            if (Array.isArray(val)) {
+            if (type(val) === 'Array') {
                 target[key] = cloneArray(val);
             } else if (isObject(val) && isObject(targetVal)) {
                 mixin(targetVal, val);

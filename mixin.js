@@ -1,6 +1,18 @@
-
 function isObject(val) {
     return typeof val === 'function' || (typeof val === 'object' && val !== null && !Array.isArray(val));
+}
+
+function cloneArray(arr) {
+    const newArr = arr.map((v) => {
+        if (Array.isArray(v)) {
+            return cloneArray(arr);
+        } else if (isObject(v)) {
+            return mixin({}, v);
+        } else {
+            return v;
+        }
+    });
+    return newArr;
 }
 
 function mixin(target, ...rest) {
@@ -10,7 +22,9 @@ function mixin(target, ...rest) {
             if (key === '__proto__') continue
             const targetVal = target[key];
             const val = obj[key];
-            if (isObject(val) && isObject(targetVal)) {
+            if (Array.isArray(val)) {
+                target[key] = cloneArray(val);
+            } else if (isObject(val) && isObject(targetVal)) {
                 mixin(targetVal, val);
             } else {
                 target[key] = val;
@@ -36,4 +50,3 @@ const b = {
 }
 
 console.log(mixin({}, a, b));
-

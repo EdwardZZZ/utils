@@ -22,7 +22,7 @@ function mixin(target, ...rest) {
     for (let obj of rest) {
         if (!isObject(obj)) continue;
         for (let key in obj) {
-            if (key === '__proto__') continue
+            if (key === '__proto__') continue;
             const targetVal = target[key];
             const val = obj[key];
             if (type(val) === 'Array') {

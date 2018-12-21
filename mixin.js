@@ -3,7 +3,7 @@ function isObject(val) {
 }
 
 function cloneArray(arr) {
-    const newArr = arr.map((v) => {
+    return arr.map((v) => {
         if (Array.isArray(v)) {
             return cloneArray(arr);
         } else if (isObject(v)) {
@@ -12,7 +12,6 @@ function cloneArray(arr) {
             return v;
         }
     });
-    return newArr;
 }
 
 function mixin(target, ...rest) {
@@ -49,4 +48,7 @@ const b = {
     }
 }
 
-console.log(mixin({}, a, b));
+const newObj = mixin({}, a, b);
+console.log(newObj);
+b.b.e = [6];
+console.log(newObj);

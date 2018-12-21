@@ -1,4 +1,3 @@
-```js
 
 function isObject(val) {
     return typeof val === 'function' || (typeof val === 'object' && val !== null && !Array.isArray(val));
@@ -38,4 +37,3 @@ const b = {
 
 console.log(mixin({}, a, b));
 
-```

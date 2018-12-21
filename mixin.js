@@ -27,8 +27,8 @@ function mixin(target, ...rest) {
             const val = obj[key];
             if (type(val) === 'Array') {
                 target[key] = cloneArray(val);
-            } else if (isObject(val) && isObject(targetVal)) {
-                mixin(targetVal, val);
+            } else if (isObject(val)) {
+                target[key] = mixin(isObject(targetVal) ? targetVal : {}, val);
             } else {
                 target[key] = val;
             }

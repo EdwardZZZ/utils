@@ -15,10 +15,6 @@ react简单分页组件
 react modal组件示例
 <https://github.com/EdwardZZZ/utils/blob/master/react-modal.jsx>
 
-### fetch-utils
-fetch简单封装
-<https://github.com/EdwardZZZ/utils/blob/master/fetchUtils.js>
-
 ### react-router
 <https://github.com/EdwardZZZ/npm/tree/master/react-router-hash>
 
